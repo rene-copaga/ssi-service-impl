@@ -4,29 +4,28 @@
 
 package edu.umss.dip.ssiserviceimpl.controller;
 
-import edu.umss.dip.ssiserviceimpl.dto.ProjectDto;
-import edu.umss.dip.ssiserviceimpl.model.Project;
+import edu.umss.dip.ssiserviceimpl.dto.ActivityDto;
+import edu.umss.dip.ssiserviceimpl.model.Activity;
+import edu.umss.dip.ssiserviceimpl.service.ActivityService;
 import edu.umss.dip.ssiserviceimpl.service.GenericService;
-import edu.umss.dip.ssiserviceimpl.service.ProjectService;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
 @Controller
-@RequestMapping("/projects")
-public class ProjectController extends GenericController<Project, ProjectDto> {
-    private ProjectService service;
+@RequestMapping("/activities")
+public class ActivityController extends GenericController<Activity, ActivityDto> {
+    private ActivityService service;
 
-    public ProjectController(ProjectService service) {
+    public ActivityController(ActivityService service) {
         this.service = service;
     }
 
     @Override
     @GetMapping
-    public List<ProjectDto> getAll() {
+    public List<ActivityDto> getAll() {
         return super.getAll();
     }
 
@@ -34,5 +33,4 @@ public class ProjectController extends GenericController<Project, ProjectDto> {
     protected GenericService getService() {
         return service;
     }
-
 }

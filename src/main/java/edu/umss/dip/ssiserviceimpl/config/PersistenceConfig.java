@@ -2,7 +2,7 @@
  * @author: Edson A. Terceros T.
  */
 
-package edu.umss.dip.ssiservice.config;
+package edu.umss.dip.ssiserviceimpl.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;

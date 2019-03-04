@@ -1,4 +1,4 @@
-package edu.umss.dip.ssiservice.config;
+package edu.umss.dip.ssiserviceimpl.config;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

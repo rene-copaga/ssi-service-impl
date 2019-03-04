@@ -4,29 +4,28 @@
 
 package edu.umss.dip.ssiserviceimpl.controller;
 
-import edu.umss.dip.ssiserviceimpl.dto.ProjectDto;
-import edu.umss.dip.ssiserviceimpl.model.Project;
+import edu.umss.dip.ssiserviceimpl.dto.DetailActivityDto;
+import edu.umss.dip.ssiserviceimpl.model.DetailActivity;
+import edu.umss.dip.ssiserviceimpl.service.DetailActivityService;
 import edu.umss.dip.ssiserviceimpl.service.GenericService;
-import edu.umss.dip.ssiserviceimpl.service.ProjectService;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
 @Controller
-@RequestMapping("/projects")
-public class ProjectController extends GenericController<Project, ProjectDto> {
-    private ProjectService service;
+@RequestMapping("/detailActivities")
+public class DetailActivityController extends GenericController<DetailActivity, DetailActivityDto> {
+    private DetailActivityService service;
 
-    public ProjectController(ProjectService service) {
+    public DetailActivityController(DetailActivityService service) {
         this.service = service;
     }
 
     @Override
     @GetMapping
-    public List<ProjectDto> getAll() {
+    public List<DetailActivityDto> getAll() {
         return super.getAll();
     }
 
@@ -34,5 +33,4 @@ public class ProjectController extends GenericController<Project, ProjectDto> {
     protected GenericService getService() {
         return service;
     }
-
 }
