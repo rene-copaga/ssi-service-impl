@@ -3,16 +3,18 @@ package edu.umss.dip.ssiserviceimpl.model;
 import edu.umss.dip.ssiserviceimpl.dto.ProjectDto;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class Project extends ModelBase<ProjectDto> {
+
     private String name;
     private String description;
 
-    @OneToMany(mappedBy = "project")
+    @OneToMany(mappedBy = "project", fetch = FetchType.EAGER)
     private List<DetailActivity> detailActivities = new ArrayList<>();
 
     public String getName() {

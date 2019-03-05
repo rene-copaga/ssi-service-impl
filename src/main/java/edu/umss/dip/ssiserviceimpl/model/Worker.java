@@ -1,6 +1,5 @@
 package edu.umss.dip.ssiserviceimpl.model;
 
-import edu.umss.dip.ssiserviceimpl.dto.ProjectDto;
 import edu.umss.dip.ssiserviceimpl.dto.WorkerDto;
 
 import javax.persistence.CascadeType;
@@ -15,7 +14,7 @@ public class Worker extends ModelBase<WorkerDto> {
     private String lastName;
     private Date hiringDate;
 
-    @ManyToOne(optional = false, targetEntity = Rol.class, fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    @ManyToOne(optional = false, targetEntity = Rol.class, fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     Rol rol;
 
     public String getFirstName() {

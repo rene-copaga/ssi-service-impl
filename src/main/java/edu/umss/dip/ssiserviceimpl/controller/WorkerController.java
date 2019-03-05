@@ -8,13 +8,13 @@ import edu.umss.dip.ssiserviceimpl.dto.WorkerDto;
 import edu.umss.dip.ssiserviceimpl.model.Worker;
 import edu.umss.dip.ssiserviceimpl.service.WorkerService;
 import edu.umss.dip.ssiserviceimpl.service.GenericService;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/workers")
 public class WorkerController extends GenericController<Worker, WorkerDto> {
     private WorkerService service;

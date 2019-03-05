@@ -8,13 +8,13 @@ import edu.umss.dip.ssiserviceimpl.dto.ActivityDto;
 import edu.umss.dip.ssiserviceimpl.model.Activity;
 import edu.umss.dip.ssiserviceimpl.service.ActivityService;
 import edu.umss.dip.ssiserviceimpl.service.GenericService;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/activities")
 public class ActivityController extends GenericController<Activity, ActivityDto> {
     private ActivityService service;
