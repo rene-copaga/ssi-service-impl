@@ -2,13 +2,44 @@ package edu.umss.dip.ssiserviceimpl.model;
 
 import edu.umss.dip.ssiserviceimpl.dto.ProjectDto;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@NamedStoredProcedureQueries({
+        @NamedStoredProcedureQuery(
+                name = "createProject",
+                procedureName = "createProject",
+                parameters = {
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "name"),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "description")
+                },
+                resultClasses = Project.class
+        ),
+        @NamedStoredProcedureQuery(
+                name = "readProject",
+                procedureName = "readProject",
+                resultClasses = Project.class
+        ),
+        @NamedStoredProcedureQuery(
+                name = "updateProject",
+                procedureName = "updateProject",
+                parameters = {
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = Long.class, name = "id"),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "name"),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "description")
+                },
+                resultClasses = Project.class
+        ),
+        @NamedStoredProcedureQuery(
+                name = "deleteProject",
+                procedureName = "deleteProject",
+                parameters = {
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = Long.class, name = "id")
+                }
+        )
+})
 public class Project extends ModelBase<ProjectDto> {
 
     private String name;

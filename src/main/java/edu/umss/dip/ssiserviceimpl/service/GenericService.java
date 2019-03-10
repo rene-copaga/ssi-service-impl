@@ -22,4 +22,11 @@ public interface GenericService<T extends ModelBase> {
 
     Byte[] getBytes(MultipartFile file);
 
+
+    List<T> spFindAll();
+
+    T spSave(T model);
+
+    void spDeleteById(Long id);
+
 }

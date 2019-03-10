@@ -53,7 +53,7 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         rolRepository.save(rolSupervisor);
 
         Rol rolCapataz = new Rol();
-        rolSupervisor.setName("Capataz");
+        rolCapataz.setName("Capataz");
 
         rolRepository.save(rolCapataz);
 

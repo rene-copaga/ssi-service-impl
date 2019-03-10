@@ -99,4 +99,21 @@ public abstract class GenericServiceImpl<T extends ModelBase> implements Generic
     }
 
     protected abstract GenericRepository<T> getRepository();
+
+    @Override
+    public List<T> spFindAll() {
+        return getRepository().findAll();
+    }
+
+    @Override
+    public T spSave(T model) {
+        validateSave(model);
+        T t = getRepository().save(model);
+        return findById(t.getId());
+    }
+
+    @Override
+    public void spDeleteById(Long id) {
+        getRepository().deleteById(id);
+    }
 }
