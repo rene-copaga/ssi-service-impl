@@ -1,25 +1,33 @@
 package edu.umss.dip.ssiserviceimpl.repositories;
 
-import edu.umss.dip.ssiserviceimpl.model.Project;
+import edu.umss.dip.ssiserviceimpl.model.ModelBase;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.StoredProcedureQuery;
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
-public class  SPRepositoryImpl implements SPRepository<Project> {
+@Repository
+public abstract class GenericSPRepositoryImpl<T extends ModelBase> implements GenericSPRepository<T> {
     @PersistenceContext
     private EntityManager em;
 
+    private Class<T> getDomainClass() {
+        ParameterizedType superClass = (ParameterizedType) getClass().getGenericSuperclass();
+        return (Class<T>) superClass.getActualTypeArguments()[0];
+    }
 
     @Override
-    public List<Project> spFindAll() {
+    public List<T> spFindAll() {
+        Class name = getDomainClass();
         StoredProcedureQuery storedProcedureQuery = em.createNamedStoredProcedureQuery("readProject");
         return storedProcedureQuery.getResultList();
     }
 
     @Override
-    public Project spSave(Project model) {
+    public T spSave(T model) {
         StoredProcedureQuery storedProcedureQuery;
 
         if (model.getId() == null) {
@@ -29,10 +37,9 @@ public class  SPRepositoryImpl implements SPRepository<Project> {
             storedProcedureQuery.setParameter("id", model.getId());
         }
 
-        storedProcedureQuery.setParameter("name", model.getName());
-        storedProcedureQuery.setParameter("description", model.getDescription());
+        setParameters(storedProcedureQuery, model);
 
-        return (Project) storedProcedureQuery.getSingleResult();
+        return (T) storedProcedureQuery.getSingleResult();
     }
 
     @Override
@@ -41,13 +48,7 @@ public class  SPRepositoryImpl implements SPRepository<Project> {
         storedProcedureQuery.setParameter("id", id);
         storedProcedureQuery.execute();
     }
-/*
-    public void setIdParameter(StoredProcedureQuery storedProcedureQuery) {
-        storedProcedureQuery.setParameter("id", id);
-    }
 
-    public void setParameters(StoredProcedureQuery storedProcedureQuery) {
-        storedProcedureQuery.setParameter("name", model.getName());
-        storedProcedureQuery.setParameter("description", model.getDescription());
-    }*/
+    protected abstract void setParameters(StoredProcedureQuery storedProcedureQuery, T model);
+
 }
