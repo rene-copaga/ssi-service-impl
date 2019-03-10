@@ -21,8 +21,7 @@ public abstract class GenericSPRepositoryImpl<T extends ModelBase> implements Ge
 
     @Override
     public List<T> spFindAll() {
-        Class name = getDomainClass();
-        StoredProcedureQuery storedProcedureQuery = em.createNamedStoredProcedureQuery("readProject");
+        StoredProcedureQuery storedProcedureQuery = em.createNamedStoredProcedureQuery("read" + getDomainClass().getSimpleName());
         return storedProcedureQuery.getResultList();
     }
 
@@ -31,9 +30,9 @@ public abstract class GenericSPRepositoryImpl<T extends ModelBase> implements Ge
         StoredProcedureQuery storedProcedureQuery;
 
         if (model.getId() == null) {
-            storedProcedureQuery = em.createNamedStoredProcedureQuery("createProject");
+            storedProcedureQuery = em.createNamedStoredProcedureQuery("create" + getDomainClass().getSimpleName());
         } else {
-            storedProcedureQuery = em.createNamedStoredProcedureQuery("updateProject");
+            storedProcedureQuery = em.createNamedStoredProcedureQuery("update" + getDomainClass().getSimpleName());
             storedProcedureQuery.setParameter("id", model.getId());
         }
 
@@ -44,7 +43,7 @@ public abstract class GenericSPRepositoryImpl<T extends ModelBase> implements Ge
 
     @Override
     public void spDeleteById(Long id) {
-        StoredProcedureQuery storedProcedureQuery = em.createNamedStoredProcedureQuery("deleteProject");
+        StoredProcedureQuery storedProcedureQuery = em.createNamedStoredProcedureQuery("delete" + getDomainClass().getSimpleName());
         storedProcedureQuery.setParameter("id", id);
         storedProcedureQuery.execute();
     }
