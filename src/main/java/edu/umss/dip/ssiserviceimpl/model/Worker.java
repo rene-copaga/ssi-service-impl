@@ -2,13 +2,45 @@ package edu.umss.dip.ssiserviceimpl.model;
 
 import edu.umss.dip.ssiserviceimpl.dto.WorkerDto;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@NamedStoredProcedureQueries({
+        @NamedStoredProcedureQuery(
+                name = "createWorker",
+                procedureName = "createWorker",
+                parameters = {
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "first_name"),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "last_name"),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = Date.class, name = "hiring_date")
+                },
+                resultClasses = Worker.class
+        ),
+        @NamedStoredProcedureQuery(
+                name = "readWorker",
+                procedureName = "readWorker",
+                resultClasses = Worker.class
+        ),
+        @NamedStoredProcedureQuery(
+                name = "updateWorker",
+                procedureName = "updateWorker",
+                parameters = {
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = Long.class, name = "id"),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "first_name"),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "last_name"),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = Date.class, name = "hiring_date")
+                },
+                resultClasses = Worker.class
+        ),
+        @NamedStoredProcedureQuery(
+                name = "deleteWorker",
+                procedureName = "deleteWorker",
+                parameters = {
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = Long.class, name = "id")
+                }
+        )
+})
 public class Worker extends ModelBase<WorkerDto> {
     private String firstName;
     private String lastName;

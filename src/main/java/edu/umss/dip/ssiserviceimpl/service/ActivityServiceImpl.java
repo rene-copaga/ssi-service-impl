@@ -7,6 +7,7 @@ package edu.umss.dip.ssiserviceimpl.service;
 import edu.umss.dip.ssiserviceimpl.model.Activity;
 import edu.umss.dip.ssiserviceimpl.repositories.ActivityRepository;
 import edu.umss.dip.ssiserviceimpl.repositories.GenericRepository;
+import edu.umss.dip.ssiserviceimpl.repositories.GenericSPRepository;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,6 +20,11 @@ public class ActivityServiceImpl extends GenericServiceImpl<Activity> implements
 
     @Override
     protected GenericRepository<Activity> getRepository() {
+        return repository;
+    }
+
+    @Override
+    protected GenericSPRepository<Activity> getSPRepository() {
         return repository;
     }
 }

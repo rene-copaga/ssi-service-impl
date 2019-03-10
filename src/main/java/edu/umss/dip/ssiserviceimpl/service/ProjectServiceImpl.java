@@ -6,6 +6,7 @@ package edu.umss.dip.ssiserviceimpl.service;
 
 import edu.umss.dip.ssiserviceimpl.model.Project;
 import edu.umss.dip.ssiserviceimpl.repositories.GenericRepository;
+import edu.umss.dip.ssiserviceimpl.repositories.GenericSPRepository;
 import edu.umss.dip.ssiserviceimpl.repositories.ProjectRepository;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,12 @@ public class ProjectServiceImpl extends GenericServiceImpl<Project> implements P
     }
 
     @Override
+    protected GenericSPRepository<Project> getSPRepository() {
+        return repository;
+    }
+
+    /*
+    @Override
     public List<Project> findAll() {
         return repository.spFindAll();
     }
@@ -40,4 +47,5 @@ public class ProjectServiceImpl extends GenericServiceImpl<Project> implements P
     public void deleteById(Long id) {
         repository.spDeleteById(id);
     }
+    */
 }

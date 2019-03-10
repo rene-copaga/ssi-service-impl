@@ -2,12 +2,42 @@ package edu.umss.dip.ssiserviceimpl.model;
 
 import edu.umss.dip.ssiserviceimpl.dto.AsignationDto;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
+@NamedStoredProcedureQueries({
+        @NamedStoredProcedureQuery(
+                name = "createAsignation",
+                procedureName = "createAsignation",
+                parameters = {
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = Long.class, name = "detail_activity_id"),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = Long.class, name = "worker_id")
+                },
+                resultClasses = Asignation.class
+        ),
+        @NamedStoredProcedureQuery(
+                name = "readAsignation",
+                procedureName = "readAsignation",
+                resultClasses = Asignation.class
+        ),
+        @NamedStoredProcedureQuery(
+                name = "updateAsignation",
+                procedureName = "updateAsignation",
+                parameters = {
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = Long.class, name = "id"),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = Long.class, name = "detail_activity_id"),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = Long.class, name = "worker_id")
+                },
+                resultClasses = Asignation.class
+        ),
+        @NamedStoredProcedureQuery(
+                name = "deleteAsignation",
+                procedureName = "deleteAsignation",
+                parameters = {
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = Long.class, name = "id")
+                }
+        )
+})
 public class Asignation extends ModelBase<AsignationDto> {
 
     @ManyToOne(optional = false, targetEntity = DetailActivity.class, cascade = CascadeType.MERGE, fetch = FetchType.LAZY)

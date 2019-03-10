@@ -5,6 +5,7 @@
 package edu.umss.dip.ssiserviceimpl.service;
 
 import edu.umss.dip.ssiserviceimpl.model.Worker;
+import edu.umss.dip.ssiserviceimpl.repositories.GenericSPRepository;
 import edu.umss.dip.ssiserviceimpl.repositories.WorkerRepository;
 import edu.umss.dip.ssiserviceimpl.repositories.GenericRepository;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,11 @@ public class WorkerServiceImpl extends GenericServiceImpl<Worker> implements Wor
 
     @Override
     protected GenericRepository<Worker> getRepository() {
+        return repository;
+    }
+
+    @Override
+    protected GenericSPRepository<Worker> getSPRepository() {
         return repository;
     }
 }

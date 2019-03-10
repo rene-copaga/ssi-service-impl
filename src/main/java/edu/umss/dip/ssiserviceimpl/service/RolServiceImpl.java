@@ -5,6 +5,7 @@
 package edu.umss.dip.ssiserviceimpl.service;
 
 import edu.umss.dip.ssiserviceimpl.model.Rol;
+import edu.umss.dip.ssiserviceimpl.repositories.GenericSPRepository;
 import edu.umss.dip.ssiserviceimpl.repositories.RolRepository;
 import edu.umss.dip.ssiserviceimpl.repositories.GenericRepository;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,11 @@ public class RolServiceImpl extends GenericServiceImpl<Rol> implements RolServic
 
     @Override
     protected GenericRepository<Rol> getRepository() {
+        return repository;
+    }
+
+    @Override
+    protected GenericSPRepository<Rol> getSPRepository() {
         return repository;
     }
 }

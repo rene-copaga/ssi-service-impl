@@ -4,12 +4,42 @@ import edu.umss.dip.ssiserviceimpl.dto.DetailActivityDto;
 import edu.umss.dip.ssiserviceimpl.dto.DtoBase;
 import org.modelmapper.ModelMapper;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
+@NamedStoredProcedureQueries({
+        @NamedStoredProcedureQuery(
+                name = "createDetailActivity",
+                procedureName = "createDetailActivity",
+                parameters = {
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = Long.class, name = "activity_id"),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = Long.class, name = "project_id")
+                },
+                resultClasses = DetailActivity.class
+        ),
+        @NamedStoredProcedureQuery(
+                name = "readDetailActivity",
+                procedureName = "readDetailActivity",
+                resultClasses = DetailActivity.class
+        ),
+        @NamedStoredProcedureQuery(
+                name = "updateDetailActivity",
+                procedureName = "updateDetailActivity",
+                parameters = {
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = Long.class, name = "id"),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = Long.class, name = "activity_id"),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = Long.class, name = "project_id")
+                },
+                resultClasses = DetailActivity.class
+        ),
+        @NamedStoredProcedureQuery(
+                name = "deleteDetailActivity",
+                procedureName = "deleteDetailActivity",
+                parameters = {
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = Long.class, name = "id")
+                }
+        )
+})
 public class DetailActivity extends ModelBase<DetailActivityDto> {
 
     @ManyToOne(optional = false, targetEntity = Activity.class, cascade = CascadeType.MERGE, fetch = FetchType.LAZY)

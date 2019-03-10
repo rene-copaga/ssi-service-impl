@@ -4,6 +4,7 @@ import edu.umss.dip.ssiserviceimpl.dto.DtoBase;
 import edu.umss.dip.ssiserviceimpl.exception.NotFoundException;
 import edu.umss.dip.ssiserviceimpl.model.ModelBase;
 import edu.umss.dip.ssiserviceimpl.repositories.GenericRepository;
+import edu.umss.dip.ssiserviceimpl.repositories.GenericSPRepository;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -100,20 +101,22 @@ public abstract class GenericServiceImpl<T extends ModelBase> implements Generic
 
     protected abstract GenericRepository<T> getRepository();
 
+    protected abstract GenericSPRepository<T> getSPRepository();
+
     @Override
     public List<T> spFindAll() {
-        return getRepository().findAll();
+        return getSPRepository().spFindAll();
     }
 
     @Override
     public T spSave(T model) {
         validateSave(model);
-        T t = getRepository().save(model);
+        T t = getSPRepository().spSave(model);
         return findById(t.getId());
     }
 
     @Override
     public void spDeleteById(Long id) {
-        getRepository().deleteById(id);
+        getSPRepository().spDeleteById(id);
     }
 }

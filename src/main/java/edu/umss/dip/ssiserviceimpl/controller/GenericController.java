@@ -129,4 +129,26 @@ public abstract class GenericController<E extends ModelBase, D extends DtoBase<E
     public <T> List<T> convertListToDtoList(List<?> elements, Class<T> classToConvert) {
         return elements.stream().map(element -> modelMapper.map(element, classToConvert)).collect(Collectors.toList());
     }
+
+
+
+    @DeleteMapping(value = "sp/{id}")
+    public void spDeleteElement(@PathVariable("id") @NotNull Long id) {
+        getService().spDeleteById(id);
+    }
+
+    @GetMapping(path = "sp")
+    public List<D> spGetAll() {
+        return toDto(getService().spFindAll());
+    }
+
+    @PostMapping(path = "sp")
+    public D spSave(@RequestBody D element) {
+        return toDto((E) getService().spSave(toModel(element)));
+    }
+
+    @PutMapping(path = "sp")
+    public D spUpdate(@RequestBody D element) {
+        return toDto((E) getService().spSave(toModel(element)));
+    }
 }

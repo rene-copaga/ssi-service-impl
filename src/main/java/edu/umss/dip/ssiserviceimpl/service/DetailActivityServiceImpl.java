@@ -7,6 +7,7 @@ package edu.umss.dip.ssiserviceimpl.service;
 import edu.umss.dip.ssiserviceimpl.model.DetailActivity;
 import edu.umss.dip.ssiserviceimpl.repositories.DetailActivityRepository;
 import edu.umss.dip.ssiserviceimpl.repositories.GenericRepository;
+import edu.umss.dip.ssiserviceimpl.repositories.GenericSPRepository;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,6 +20,11 @@ public class DetailActivityServiceImpl extends GenericServiceImpl<DetailActivity
 
     @Override
     protected GenericRepository<DetailActivity> getRepository() {
+        return repository;
+    }
+
+    @Override
+    protected GenericSPRepository<DetailActivity> getSPRepository() {
         return repository;
     }
 }
