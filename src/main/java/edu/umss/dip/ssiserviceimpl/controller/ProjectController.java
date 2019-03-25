@@ -8,12 +8,14 @@ import edu.umss.dip.ssiserviceimpl.dto.ProjectDto;
 import edu.umss.dip.ssiserviceimpl.model.Project;
 import edu.umss.dip.ssiserviceimpl.service.GenericService;
 import edu.umss.dip.ssiserviceimpl.service.ProjectService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@CrossOrigin(maxAge = 7200)
 @RestController
 @RequestMapping("/projects")
 public class ProjectController extends GenericController<Project, ProjectDto> {

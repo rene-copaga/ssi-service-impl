@@ -13,7 +13,8 @@ import java.util.Date;
                 parameters = {
                         @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "first_name"),
                         @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "last_name"),
-                        @StoredProcedureParameter(mode = ParameterMode.IN, type = Date.class, name = "hiring_date")
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = Date.class, name = "hiring_date"),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = Long.class, name = "rol_id")
                 },
                 resultClasses = Worker.class
         ),
@@ -29,7 +30,8 @@ import java.util.Date;
                         @StoredProcedureParameter(mode = ParameterMode.IN, type = Long.class, name = "id"),
                         @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "first_name"),
                         @StoredProcedureParameter(mode = ParameterMode.IN, type = String.class, name = "last_name"),
-                        @StoredProcedureParameter(mode = ParameterMode.IN, type = Date.class, name = "hiring_date")
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = Date.class, name = "hiring_date"),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, type = Long.class, name = "rol_id")
                 },
                 resultClasses = Worker.class
         ),
